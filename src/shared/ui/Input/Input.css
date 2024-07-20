@@ -1,0 +1,26 @@
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #121212;
+    border-radius: 10px;
+    background-color: #313131;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.custom-input::placeholder {
+    font-weight: bold;
+}
+
+::selection {
+    background-color: #292929;
+    color: #FFFFFF;
+}
+
+.custom-input:focus {
+    border-color: #40E0D0;
+    outline: none;
+    background-color: #ffffff;
+}

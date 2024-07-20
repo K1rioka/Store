@@ -1,0 +1,27 @@
+.custom-textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #121212;
+    border-radius: 10px;
+    background-color: #313131;
+    color: #121212;
+    font-size: 16px;
+
+}
+
+.custom-textarea::placeholder {
+    font-weight: bold;
+}
+
+::selection {
+    background-color: #292929;
+    color: #FFFFFF;
+}
+
+.custom-textarea:focus {
+    border-color: #40E0D0;
+    outline: none;
+    background-color: #ffffff;
+}

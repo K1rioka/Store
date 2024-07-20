@@ -1,0 +1,30 @@
+.home-page {
+    text-align: center;
+    background-color: #121212;
+    margin: 0;
+    border: 1px solid #252525;
+}
+
+h1 {
+    font-family: 'Helvetica', sans-serif;
+}
+
+.my-link {
+    font-family: 'Helvetica', sans-serif;
+    color: #fff;
+    text-decoration: none;
+}
+
+.my-link:hover {
+    color: darkgray;
+}
+.home-page a {
+    display: inline-block;
+    margin: 20px 0;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.home-page a:hover {
+    text-decoration: underline;
+}

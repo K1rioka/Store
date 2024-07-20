@@ -1,0 +1,40 @@
+.custom-select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #121212;
+    border-radius: 10px;
+    background-color: #313131; /* Фон селектора */
+    color: #FFFFFF; /* Цвет текста селектора */
+    font-size: 16px;
+    appearance: none; /* Убираем стандартный стиль браузера */
+    cursor: pointer; /* Указатель для улучшения пользовательского опыта */
+    z-index: 1; /* Убедитесь, что селектор находится поверх псевдо-элемента */
+}
+
+.custom-select:focus {
+    outline: none; /* Убираем стандартный обвод фокуса браузера */
+    background-color: #313131; /* Сохраняем цвет фона при активации */
+    color: #FFFFFF; /* Сохраняем цвет текста при активации */
+}
+
+.custom-select-wrapper::after {
+    content: '▼'; /* Символ стрелки */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Игнорировать события мыши для псевдо-элемента */
+    color: #FFFFFF; /* Цвет стрелки */
+}
+
+/* Стилизация выпадающего списка (опционально) */
+.custom-select option {
+    background-color: #313131;
+    color: #ffffff;
+}
+
+.custom-select option:hover {
+    color: #000000; /* Цвет текста при наведении */
+}
