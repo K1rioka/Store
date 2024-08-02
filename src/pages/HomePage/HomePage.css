@@ -18,6 +18,16 @@ h1 {
 .my-link:hover {
     color: darkgray;
 }
+
+.home-page {
+    text-align: center;
+    background-color: #121212;
+    margin: 0 auto; /* Центрирует контейнер на странице */
+    border: 1px solid #252525;
+    padding: 0; /* Убирает отступы */
+}
+
+
 .home-page a {
     display: inline-block;
     margin: 20px 0;
@@ -27,4 +37,24 @@ h1 {
 
 .home-page a:hover {
     text-decoration: underline;
+}
+
+.slider-container {
+    margin: 0 140px; /* Центрирует контейнер */
+    width: 80%; /* Задаёт ширину */
+    padding: 0; /* Убирает возможные отступы */
+}
+
+.slick-slide {
+    box-sizing: border-box; /* Учитывает паддинги и бордеры в ширину */
+}
+
+.slick-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.slick-slider {
+    margin: 0 auto; /* Центрирует слайдер */
 }

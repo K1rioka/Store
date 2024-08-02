@@ -1,4 +1,3 @@
-// src/components/ProductList/ProductList.tsx
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -22,23 +21,34 @@ const ProductList: React.FC = () => {
     return (
         <div className="product-list-container">
             <h2>Product List</h2>
-            <ul className="product-list">
-                {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product: Product) => (
-                        <li key={product.id} className="product-item">
-                            {product.image && <img src={product.image} alt={product.name} className="product-image" />}
-                            <div className="product-name">
-                                <Link to={`/product/${product.id}`}>{product.name}</Link>
-                            </div>
-                            <div className="product-category">{product.category}</div>
-                            <div className="product-price">${product.price.toFixed(2)}</div>
-                            <div className="product-color">{product.color}</div>
-                        </li>
-                    ))
-                ) : (
-                    <p>No products available</p>
-                )}
-            </ul>
+            <div className="product-list-div">
+                <ul className="product-list" id="product-list-id">
+                    {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product: Product) => (
+                            <li key={product.id} className="product-item" id="product-item-id">
+                                <div className="product-name">
+                                    <Link to={`/product/${product.id}`}>{product.name}</Link>
+                                </div>
+                                <div className="product-images">
+                                    {product.image && Array.isArray(product.image) && product.image.length > 0 ? (
+                                        product.image.map((imgUrl, index) => (
+                                            <img key={index} src={imgUrl} alt={`${product.name} image ${index + 1}`}
+                                                 className="product-image"/>
+                                        ))
+                                    ) : (
+                                        <p>No images available</p>
+                                    )}
+                                </div>
+                                <div className="product-price">${product.price.toFixed(2)}</div>
+                                <div className="product-category">{product.category}</div>
+                            </li>
+                        ))
+                    ) : (
+                        <p>No products available</p>
+                    )}
+                </ul>
+            </div>
+
         </div>
     );
 };

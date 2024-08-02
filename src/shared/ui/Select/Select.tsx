@@ -10,11 +10,18 @@ interface SelectProps {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     options: Option[];
+    name?: string;
+    className?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ value, onChange, options }) => {
+const Select: React.FC<SelectProps> = ({ value, onChange, options, name, }) => {
     return (
-        <select value={value} onChange={onChange} className="custom-select">
+        <select
+            value={value}
+            onChange={onChange}
+            name={name}
+            className="custom-select"
+        >
             {options.map((option) => (
                 <option key={option.value} value={option.value}>
                     {option.label}

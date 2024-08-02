@@ -1,0 +1,119 @@
+/* ProductPage.css */
+.product-page-container {
+    max-width: 800px; /* Установите максимальную ширину контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    padding: 20px; /* Отступы */
+}
+
+.filters-div {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.filters-row {
+    padding-bottom: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.filters-form {
+    border-right: 1px solid #e1e1e1;
+    padding-right: 10px;
+}
+
+
+.product-item {
+    position: relative;
+    text-align: center;
+    margin-bottom: 80px;
+    height: 500px;
+}
+
+.product-images {
+    position: relative;
+    width: 100%;
+    vertical-align: middle;
+    height: 250px;
+    line-height: 250px;
+}
+
+.product-image {
+    display: inline-block;
+    max-height: 85%;
+}
+
+.product-list-page {
+    position: relative;
+    display: grid; /* Включение сетки */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Разбивка столбцов на максимальные ширину 200px и минимальную ширину 1fr */
+    grid-gap: 20px; /* Расстояние между ячейками */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+
+
+.product-list-container {
+    width: 1200px; /* Установите максимальную ширину контейнера */
+    margin: 0 auto; /* ��ентрирование контейнера */
+}
+
+.product-list-div {
+    width: 1125px;
+}
+
+#product-list-id {
+    display: flex;
+    list-style-type: none; /* Убираем стандартные маркеры списка */
+    padding: 0; /* Убираем внутренний отступ */
+    margin: 0; /* Убираем внешние отступы */
+}
+
+#product-item-id {
+    margin: 0 10px; /* Расстояние между элементами */
+    padding: 10px;
+}
+
+.product-name {
+    font-family: 'Helvetica', sans-serif;
+    margin-top: 0;
+    height: 40px;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.product-name a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.product-name a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-price {
+    font-family: 'Helvetica', sans-serif;
+    margin-top: 0;
+    height: 40px;
+    color: #FFFFFF;
+    font-size: 36px;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.product-category {
+    padding: 5px;
+    font-family: 'Helvetica', sans-serif;
+    margin-top: 0;
+    height: 40px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: lighter;
+    text-align: center;
+}

@@ -1,16 +1,15 @@
-// src/entities/Product/model/types.ts
 export interface Product {
     id: string;
     name: string;
-    description: string; // Верните поле 'description'
+    description: string; // Поле 'description' возвращено
     price: number;
     color: string;
-    category: string; // Замените 'type' на 'category'
-    image?: string; // Поле для хранения URL изображения (если нужно)
+    category: string; // 'type' заменен на 'category'
+    image?: string[]; // Поле для хранения URL изображений (если нужно)
 }
 
 export interface Filters {
-    category: string; // Замените 'type' на 'category'
+    category: string; // 'type' заменен на 'category'
     minPrice: number;
     maxPrice: number;
     color: string;

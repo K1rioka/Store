@@ -10,20 +10,36 @@ interface InputProps {
     min?: string;
     accept?: string;
     id?: string;
+    multiple?: boolean;
+    name?: string;
+    className?: string;
 }
 
-const Input: React.FC<InputProps> = ({ type, placeholder, value, onChange, step, min, accept, id }) => {
+const Input: React.FC<InputProps> = ({
+                                         type,
+                                         placeholder,
+                                         value,
+                                         onChange,
+                                         step,
+                                         min,
+                                         accept,
+                                         id,
+                                         multiple,
+                                         name,
+                                     }) => {
     return (
         <input
             type={type}
-            placeholder={placeholder}
-            value={type === 'file' ? undefined : value} // 'file' type should not use value
+            placeholder={type !== 'file' ? placeholder : undefined}
+            value={type !== 'file' ? (value as string) : undefined}
             onChange={onChange}
             className="custom-input"
-            step={step}
-            min={min}
-            accept={accept}
+            step={type === 'number' ? step : undefined}
+            min={type === 'number' ? min : undefined}
+            accept={type === 'file' ? accept : undefined}
             id={id}
+            multiple={multiple}
+            name={name}
         />
     );
 };
