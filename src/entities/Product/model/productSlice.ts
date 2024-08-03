@@ -1,11 +1,15 @@
-// src/entities/Product/model/productSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product, ProductState, Filters } from './types';
 
+const loadProductsFromLocalStorage = (): Product[] => {
+    const products = localStorage.getItem('products');
+    return products ? JSON.parse(products) : [];
+};
+
 const initialState: ProductState = {
-    products: [],
+    products: loadProductsFromLocalStorage(),
     filters: {
-        category: '', // Замените 'type' на 'category'
+        category: '',
         minPrice: 0,
         maxPrice: 0,
         color: '',
@@ -18,6 +22,7 @@ const productSlice = createSlice({
     reducers: {
         addProduct: (state, action: PayloadAction<Product>) => {
             state.products.push(action.payload);
+            localStorage.setItem('products', JSON.stringify(state.products));
         },
         setFilters: (state, action: PayloadAction<Filters>) => {
             state.filters = action.payload;

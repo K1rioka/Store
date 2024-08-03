@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../model/productSlice';
 import { Product } from '../../model/types';
 import './AddProductForm.css';
 import Input from '../../../../shared/ui/Input/Input';
 import Textarea from '../../../../shared/ui/Textarea/Textarea';
 import Select from '../../../../shared/ui/Select/Select';
-import Button from '../../../../shared/ui/Button/Button'; // Импортируем кастомную кнопку
-import useValidation from '../../../../features/Validation/ValidationComponent'; // Импортируем хук валидации
+import Button from '../../../../shared/ui/Button/Button';
+import useValidation from '../../../../features/Validation/ValidationComponent';
+import { RootState } from '../../../../app/store';
 
 const AddProductForm: React.FC = () => {
     const dispatch = useDispatch();
+    const products = useSelector((state: RootState) => state.products.products);
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
     const [color, setColor] = useState('');
     const [category, setCategory] = useState('');
-    const [images, setImages] = useState<File[]>([]); // Измените состояние на массив файлов
+    const [images, setImages] = useState<File[]>([]);
 
     const { errors, validate, showAlerts } = useValidation();
 
@@ -34,16 +36,17 @@ const AddProductForm: React.FC = () => {
         }
 
         const newProduct: Product = {
-            id: String(Math.random()), // Генерация временного id (для демонстрации)
+            id: String(Math.random()),
             name,
             description,
             price: parseFloat(price),
             color,
             category,
-            image: images.length > 0 ? images.map(img => URL.createObjectURL(img)) : [], // Использование URL.createObjectURL для массива изображений
+            image: images.length > 0 ? images.map(img => URL.createObjectURL(img)) : [],
         };
 
         dispatch(addProduct(newProduct));
+
         // Сброс формы или дополнительные действия после добавления товара
         setName('');
         setDescription('');

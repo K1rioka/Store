@@ -31,10 +31,8 @@ const ProductList: React.FC = () => {
                                 </div>
                                 <div className="product-images">
                                     {product.image && Array.isArray(product.image) && product.image.length > 0 ? (
-                                        product.image.map((imgUrl, index) => (
-                                            <img key={index} src={imgUrl} alt={`${product.name} image ${index + 1}`}
-                                                 className="product-image"/>
-                                        ))
+                                        <img src={product.image[0]} alt={`${product.name} image 1`}
+                                             className="product-image"/>
                                     ) : (
                                         <p>No images available</p>
                                     )}
@@ -44,7 +42,7 @@ const ProductList: React.FC = () => {
                             </li>
                         ))
                     ) : (
-                        <p>No products available</p>
+                        <p className="no-products-text">No products available</p>
                     )}
                 </ul>
             </div>

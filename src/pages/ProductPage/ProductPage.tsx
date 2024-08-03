@@ -18,12 +18,26 @@ const ProductPage: React.FC = () => {
 
     const settings = {
         dots: true,          // Показывать точки навигации
-        infinite: true,      // Бесконечная прокрутка
+        infinite: false,      // Бесконечная прокрутка
         speed: 500,          // Скорость анимации
         slidesToShow: 1,     // Количество видимых слайдов
         slidesToScroll: 1,   // Количество слайдов, прокручиваемых за один раз
         autoplay: true,      // Автоматическая прокрутка
         autoplaySpeed: 3000, // Скорость автопрокрутки (мс)
+    };
+
+    const renderSlides = () => {
+        const slides = [];
+        if (product.image && product.image.length > 0) {
+            for (let i = 0; i < product.image.length; i++) {
+                slides.push(
+                    <div key={i} className="slider-slide">
+                        <img src={product.image[i]} alt={`${product.name} image ${i + 1}`} className="product-image" />
+                    </div>
+                );
+            }
+        }
+        return slides;
     };
 
     return (
@@ -32,11 +46,7 @@ const ProductPage: React.FC = () => {
             {product.image && product.image.length > 0 ? (
                 <div className="slider-container">
                     <Slider {...settings}>
-                        {product.image.map((imgUrl, index) => (
-                            <div key={index} className="slider-slide">
-                                <img src={imgUrl} alt={`${product.name} image ${index + 1}`} className="product-image" />
-                            </div>
-                        ))}
+                        {renderSlides()}
                     </Slider>
                 </div>
             ) : (
