@@ -39,7 +39,6 @@ const ProductList: React.FC = () => {
                                 <div className="product-price">
                                     {product.price !== undefined ? `$${product.price.toFixed(2)}` : 'Price not available'}
                                 </div>
-                                <div className="product-category">{product.category}</div>
                             </li>
                         ))
                     ) : (

@@ -24,14 +24,6 @@ const AddProductForm: React.FC = () => {
 
     const { errors, validate, showAlerts } = useValidation();
 
-    useEffect(() => {
-        const storedProducts = localStorage.getItem('products');
-        if (storedProducts) {
-            const parsedProducts = JSON.parse(storedProducts);
-            dispatch(addProduct(parsedProducts));
-        }
-    }, [dispatch]);
-
     const handleAddProduct = () => {
         const isNameValid = !validate('name', name);
         const isDescriptionTab1Valid = !validate('descriptionTab1', descriptionTab1);
@@ -46,7 +38,7 @@ const AddProductForm: React.FC = () => {
         }
 
         const newProduct: Product = {
-            id: String(Math.random()),
+            id: String(Math.random()), // Генерация уникального ID
             name,
             description: `${descriptionTab1}<!--tab2-->${descriptionTab2}`, // Разделение описания для вкладок
             price: parseFloat(price),
@@ -56,10 +48,6 @@ const AddProductForm: React.FC = () => {
         };
 
         dispatch(addProduct(newProduct));
-
-        // Сохранение продуктов в localStorage
-        const updatedProducts = [...products, newProduct];
-        localStorage.setItem('products', JSON.stringify(updatedProducts));
 
         // Сброс формы после добавления товара
         setName('');

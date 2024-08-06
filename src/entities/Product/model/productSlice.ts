@@ -11,7 +11,7 @@ const initialState: ProductState = {
     filters: {
         category: '',
         minPrice: 0,
-        maxPrice: 0,
+        maxPrice: Infinity, // Исправил на Infinity для фильтрации без верхнего предела
         color: '',
     },
 };
@@ -24,11 +24,15 @@ const productSlice = createSlice({
             state.products.push(action.payload);
             localStorage.setItem('products', JSON.stringify(state.products));
         },
+        addMultipleProducts: (state, action: PayloadAction<Product[]>) => {
+            state.products.push(...action.payload);
+            localStorage.setItem('products', JSON.stringify(state.products));
+        },
         setFilters: (state, action: PayloadAction<Filters>) => {
             state.filters = action.payload;
         },
     },
 });
 
-export const { addProduct, setFilters } = productSlice.actions;
+export const { addProduct, addMultipleProducts, setFilters } = productSlice.actions;
 export default productSlice.reducer;
