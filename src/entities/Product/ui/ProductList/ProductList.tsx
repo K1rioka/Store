@@ -20,7 +20,7 @@ const ProductList: React.FC = () => {
 
     return (
         <div className="product-list-container">
-            <h2>Product List</h2>
+            <h2 className="h2-form">Product List</h2>
             <div className="product-list-div">
                 <ul className="product-list" id="product-list-id">
                     {filteredProducts.length > 0 ? (
@@ -31,13 +31,14 @@ const ProductList: React.FC = () => {
                                 </div>
                                 <div className="product-images">
                                     {product.image && Array.isArray(product.image) && product.image.length > 0 ? (
-                                        <img src={product.image[0]} alt={`${product.name} image 1`}
-                                             className="product-image"/>
+                                        <img src={product.image[0]} alt={`${product.name} image 1`} className="product-image" />
                                     ) : (
                                         <p>No images available</p>
                                     )}
                                 </div>
-                                <div className="product-price">${product.price.toFixed(2)}</div>
+                                <div className="product-price">
+                                    {product.price !== undefined ? `$${product.price.toFixed(2)}` : 'Price not available'}
+                                </div>
                                 <div className="product-category">{product.category}</div>
                             </li>
                         ))
@@ -46,7 +47,6 @@ const ProductList: React.FC = () => {
                     )}
                 </ul>
             </div>
-
         </div>
     );
 };

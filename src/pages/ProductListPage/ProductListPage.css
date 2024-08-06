@@ -67,6 +67,7 @@
 
 #product-list-id {
     display: flex;
+    flex-wrap: wrap; /* Разбивка элементов по бокам */
     list-style-type: none; /* Убираем стандартные маркеры списка */
     padding: 0; /* Убираем внутренний отступ */
     margin: 0; /* Убираем внешние отступы */

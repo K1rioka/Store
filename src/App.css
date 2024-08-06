@@ -24,6 +24,39 @@ body {
   overflow-x: hidden; /* Убирает горизонтальную прокрутку */
   margin: 0 auto; /* Центрирует содержимое */
   padding: 0; /* Убирает отступы */
+  box-sizing: border-box
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+div {
+  display: block;
+  unicode-bidi: isolate;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+h3 {
+  text-align: left;
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
 }
 
 .App-logo {

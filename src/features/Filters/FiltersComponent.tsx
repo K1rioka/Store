@@ -40,7 +40,7 @@ const FiltersComponent: React.FC = () => {
     return (
         <div className="filters-div">
             <form className="filters-form" onSubmit={handleSubmit}>
-                <h2>Filter Products</h2>
+                <h2 className="h2-form">Filter Products</h2>
                 <div className="filter-inner-div">
                     <div className="filters-row">
                         <label className="custom-label">Category:</label>

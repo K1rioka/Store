@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from '../../model/productSlice';
 import { Product } from '../../model/types';
@@ -15,22 +15,32 @@ const AddProductForm: React.FC = () => {
     const products = useSelector((state: RootState) => state.products.products);
 
     const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [descriptionTab1, setDescriptionTab1] = useState('');
+    const [descriptionTab2, setDescriptionTab2] = useState('');
     const [price, setPrice] = useState('');
     const [color, setColor] = useState('');
     const [category, setCategory] = useState('');
-    const [images, setImages] = useState<File[]>([]);
+    const [images, setImages] = useState<string[]>([]);
 
     const { errors, validate, showAlerts } = useValidation();
 
+    useEffect(() => {
+        const storedProducts = localStorage.getItem('products');
+        if (storedProducts) {
+            const parsedProducts = JSON.parse(storedProducts);
+            dispatch(addProduct(parsedProducts));
+        }
+    }, [dispatch]);
+
     const handleAddProduct = () => {
         const isNameValid = !validate('name', name);
-        const isDescriptionValid = !validate('description', description);
+        const isDescriptionTab1Valid = !validate('descriptionTab1', descriptionTab1);
+        const isDescriptionTab2Valid = !validate('descriptionTab2', descriptionTab2);
         const isPriceValid = !validate('price', price);
         const isColorValid = !validate('color', color);
         const isCategoryValid = !validate('category', category);
 
-        if (!isNameValid || !isDescriptionValid || !isPriceValid || !isColorValid || !isCategoryValid) {
+        if (!isNameValid || !isDescriptionTab1Valid || !isDescriptionTab2Valid || !isPriceValid || !isColorValid || !isCategoryValid) {
             showAlerts();
             return;
         }
@@ -38,18 +48,23 @@ const AddProductForm: React.FC = () => {
         const newProduct: Product = {
             id: String(Math.random()),
             name,
-            description,
+            description: `${descriptionTab1}<!--tab2-->${descriptionTab2}`, // Разделение описания для вкладок
             price: parseFloat(price),
             color,
             category,
-            image: images.length > 0 ? images.map(img => URL.createObjectURL(img)) : [],
+            image: images,
         };
 
         dispatch(addProduct(newProduct));
 
-        // Сброс формы или дополнительные действия после добавления товара
+        // Сохранение продуктов в localStorage
+        const updatedProducts = [...products, newProduct];
+        localStorage.setItem('products', JSON.stringify(updatedProducts));
+
+        // Сброс формы после добавления товара
         setName('');
-        setDescription('');
+        setDescriptionTab1('');
+        setDescriptionTab2('');
         setPrice('');
         setColor('');
         setCategory('');
@@ -59,22 +74,41 @@ const AddProductForm: React.FC = () => {
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files) {
-            setImages(Array.from(files));
+            const imagePromises = Array.from(files).map(file => {
+                return new Promise<string>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        if (reader.result) {
+                            resolve(reader.result.toString());
+                        }
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            Promise.all(imagePromises)
+                .then(newImages => setImages(prevImages => [...prevImages, ...newImages]))
+                .catch(error => console.error('Error loading images:', error));
         }
     };
 
     return (
         <div className="form-div">
-            <h2>Add Product</h2>
+            <h2 className="h2-form">Add Product</h2>
             <div className="form-inner-div">
                 <form>
                     <label className="custom-label">Product Title:</label>
                     <Input type="text" placeholder="Enter product title" value={name}
                            onChange={(e) => setName(e.target.value)} />
                     <br />
-                    <label className="custom-label">Product Description:</label>
-                    <Textarea placeholder="Enter product description" value={description}
-                              onChange={(e) => setDescription(e.target.value)} />
+                    <label className="custom-label">Product Description for Tab 1:</label>
+                    <Textarea placeholder="Enter product description for Tab 1" value={descriptionTab1}
+                              onChange={(e) => setDescriptionTab1(e.target.value)} />
+                    <br />
+                    <label className="custom-label">Product Description for Tab 2:</label>
+                    <Textarea placeholder="Enter product description for Tab 2" value={descriptionTab2}
+                              onChange={(e) => setDescriptionTab2(e.target.value)} />
                     <br />
                     <label className="custom-label">Price:</label>
                     <Input type="number" step="0.01" min="0" placeholder="Enter price" value={price}
@@ -117,7 +151,7 @@ const AddProductForm: React.FC = () => {
                 </form>
                 <div className="image-previews">
                     {images.map((image, index) => (
-                        <img key={index} src={URL.createObjectURL(image)} alt={`Preview ${index + 1}`}
+                        <img key={index} src={image} alt={`Preview ${index + 1}`}
                              style={{ width: '100px', height: 'auto', margin: '5px' }} />
                     ))}
                 </div>
