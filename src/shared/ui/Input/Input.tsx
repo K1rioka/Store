@@ -2,7 +2,7 @@ import React from 'react';
 import './Input.css';
 
 interface InputProps {
-    type: 'text' | 'number' | 'file';
+    type: 'text' | 'number' | 'file' | 'email'; // Добавлен 'email'
     placeholder?: string;
     value?: string | number;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -13,6 +13,7 @@ interface InputProps {
     multiple?: boolean;
     name?: string;
     className?: string;
+    required?: boolean; // Добавлено свойство 'required'
 }
 
 const Input: React.FC<InputProps> = ({
@@ -26,6 +27,7 @@ const Input: React.FC<InputProps> = ({
                                          id,
                                          multiple,
                                          name,
+                                         required, // Добавлено свойство 'required'
                                      }) => {
     return (
         <input
@@ -40,6 +42,7 @@ const Input: React.FC<InputProps> = ({
             id={id}
             multiple={multiple}
             name={name}
+            required={required} // Передано свойство 'required'
         />
     );
 };

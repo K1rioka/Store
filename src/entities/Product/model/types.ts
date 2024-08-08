@@ -1,15 +1,15 @@
 export interface Product {
     id: string;
     name: string;
-    description: string; // Поле 'description' возвращено
+    description: string;
     price: number;
     color: string;
-    category: string; // 'type' заменен на 'category'
-    image?: string[]; // Поле для хранения URL изображений (если нужно)
+    category: string;
+    image?: string[];
 }
 
 export interface Filters {
-    category: string; // 'type' заменен на 'category'
+    category: string;
     minPrice: number;
     maxPrice: number;
     color: string;

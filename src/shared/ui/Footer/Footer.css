@@ -1,0 +1,113 @@
+.footer {
+    margin-top: 2px;
+    padding-top: 45px;
+    padding-bottom: 50px;
+    font-size: 16px;
+    border-top: 1px solid #e1e1e1;
+}
+
+.footer-row {
+    display: flex;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.footer-col-left {
+    display: block;
+    width: 75%
+}
+
+.footer-inner-row {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.footer-products-list {
+    width: 50%;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-info-list {
+    width: 50%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+}
+
+.footer-h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Helvetica', sans-serif;
+    line-height: 1.1;
+}
+
+footer li {
+    margin-bottom: 10px;
+}
+
+.footer-col-right {
+    float: left;
+    display: block;
+    width: 25%
+}
+
+.footer-h4 a {
+    margin-right: 5px;
+}
+
+.footer-icons {
+    padding-top: 20px;
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+}
+
+.li-icon {
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.li-a:hover .li-icon{
+    opacity: 1;
+}
+
+.footer-ul a {
+    margin-right: 5px;
+}
+
+ul a {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.footer-icon-facebook {
+    width: 50px;
+    height: 50px;
+}
+
+.footer-icon-x {
+    width: 50px;
+    height: 50px;
+}
+
+.footer-icon-facebook:hover {
+    background-color: #4267B2
+}
+
+.footer-icon-x:hover {
+    background-color: black
+}
+
+.footer-icon-instagram {
+    width: 50px;
+    height: 50px;
+}
+
+.footer-icon-instagram:hover {
+    background: linear-gradient(to right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+    border-radius: 25%;
+}

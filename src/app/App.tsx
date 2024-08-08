@@ -9,6 +9,9 @@ import AddProductPage from "../pages/AddProductPage";
 import '../App.css';
 import ProductListPage from "../pages/ProductListPage";
 import ProductPage from "./../pages/ProductPage";
+import Footer from "../shared/ui/Footer/Footer";
+import ContactUs from "../pages/ContactUsPage/ContactUsPage";
+import ContactUsPage from "../pages/ContactUsPage/ContactUsPage";
 
 const App: React.FC = () => {
     return (
@@ -22,7 +25,9 @@ const App: React.FC = () => {
                         <Route path="/add-product" element={<AddProductPage />} />
                         <Route path="/product-list-page" element={<ProductListPage />} />
                         <Route path="/product/:id" element={<ProductPage />} />
+                        <Route path="/contact-us" element={<ContactUsPage />} />
                     </Routes>
+                    <Footer />
                 </div>
             </Router>
         </Provider>

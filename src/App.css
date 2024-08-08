@@ -14,13 +14,22 @@
   font-style: normal;
 }
 
+.fa {
+  vertical-align: top;
+  margin-left: 5px;
+  display: inline-block;
+  font: normal normal normal 14px / 1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+}
+
 body {
   background-color: #121212;
   color: #FFFFFF;
 }
 
 .App {
-  text-align: center;
+  text-align: left;
   overflow-x: hidden; /* Убирает горизонтальную прокрутку */
   margin: 0 auto; /* Центрирует содержимое */
   padding: 0; /* Убирает отступы */
@@ -34,6 +43,26 @@ p {
 div {
   display: block;
   unicode-bidi: isolate;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 25px;
+  margin-top: 0
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  padding: 0 20px;
+  width: 1300px;
+  height: auto;
+  min-width: 320px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 h2 {
@@ -92,4 +121,9 @@ h3 {
   to {
     transform: rotate(360deg);
   }
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
 }

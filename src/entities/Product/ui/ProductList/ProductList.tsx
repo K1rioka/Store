@@ -1,21 +1,19 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { RootState } from '../../../../app/store';
 import { Product } from '../../model/types';
 import './ProductList.css';
 
 const ProductList: React.FC = () => {
+    const location = useLocation();
     const products = useSelector((state: RootState) => state.products.products);
-    const filters = useSelector((state: RootState) => state.products.filters);
+
+    const query = new URLSearchParams(location.search);
+    const categoryFilter = query.get('category') || '';
 
     const filteredProducts = products.filter((product: Product) => {
-        const meetsCategory = filters.category ? product.category === filters.category : true;
-        const meetsMinPrice = filters.minPrice ? product.price >= filters.minPrice : true;
-        const meetsMaxPrice = filters.maxPrice ? product.price <= filters.maxPrice : true;
-        const meetsColor = filters.color ? product.color === filters.color : true;
-
-        return meetsCategory && meetsMinPrice && meetsMaxPrice && meetsColor;
+        return categoryFilter ? product.category === categoryFilter : true;
     });
 
     return (

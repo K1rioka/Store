@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { addProduct } from '../../model/productSlice';
 import { Product } from '../../model/types';
 import './AddProductForm.css';
@@ -8,11 +8,9 @@ import Textarea from '../../../../shared/ui/Textarea/Textarea';
 import Select from '../../../../shared/ui/Select/Select';
 import Button from '../../../../shared/ui/Button/Button';
 import useValidation from '../../../../features/Validation/ValidationComponent';
-import { RootState } from '../../../../app/store';
 
 const AddProductForm: React.FC = () => {
     const dispatch = useDispatch();
-    const products = useSelector((state: RootState) => state.products.products);
 
     const [name, setName] = useState('');
     const [descriptionTab1, setDescriptionTab1] = useState('');
@@ -74,7 +72,6 @@ const AddProductForm: React.FC = () => {
                     reader.readAsDataURL(file);
                 });
             });
-
             Promise.all(imagePromises)
                 .then(newImages => setImages(prevImages => [...prevImages, ...newImages]))
                 .catch(error => console.error('Error loading images:', error));
@@ -87,51 +84,82 @@ const AddProductForm: React.FC = () => {
             <div className="form-inner-div">
                 <form>
                     <label className="custom-label">Product Title:</label>
-                    <Input type="text" placeholder="Enter product title" value={name}
-                           onChange={(e) => setName(e.target.value)} />
+                    <Input
+                        type="text"
+                        placeholder="Enter product title"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                     <br />
                     <label className="custom-label">Product Description for Tab 1:</label>
-                    <Textarea placeholder="Enter product description for Tab 1" value={descriptionTab1}
-                              onChange={(e) => setDescriptionTab1(e.target.value)} />
+                    <Textarea
+                        placeholder="Enter product description for Tab 1"
+                        value={descriptionTab1}
+                        onChange={(e) => setDescriptionTab1(e.target.value)}
+                    />
                     <br />
                     <label className="custom-label">Product Description for Tab 2:</label>
-                    <Textarea placeholder="Enter product description for Tab 2" value={descriptionTab2}
-                              onChange={(e) => setDescriptionTab2(e.target.value)} />
+                    <Textarea
+                        placeholder="Enter product description for Tab 2"
+                        value={descriptionTab2}
+                        onChange={(e) => setDescriptionTab2(e.target.value)}
+                    />
                     <br />
                     <label className="custom-label">Price:</label>
-                    <Input type="number" step="0.01" min="0" placeholder="Enter price" value={price}
-                           onChange={(e) => setPrice(e.target.value)} />
+                    <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        placeholder="Enter price"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
                     <br />
                     <label className="custom-label">Color:</label>
                     <div className="custom-select-wrapper">
-                        <Select value={color} onChange={(e) => setColor(e.target.value)} options={[
-                            { value: '', label: 'Select a color' },
-                            { value: 'black', label: 'Black' },
-                            { value: 'white', label: 'White' },
-                            { value: 'silver', label: 'Silver' },
-                            { value: 'gold', label: 'Gold' },
-                            { value: 'rose', label: 'Rose' },
-                            { value: 'violet', label: 'Violet' },
-                            { value: 'red', label: 'Red' },
-                            { value: 'dark green', label: 'Dark Green' },
-                            { value: 'titan', label: 'Titan' }
-                        ]} />
+                        <Select
+                            value={color}
+                            onChange={(e) => setColor(e.target.value)}
+                            options={[
+                                { value: '', label: 'Select a color' },
+                                { value: 'black', label: 'Black' },
+                                { value: 'white', label: 'White' },
+                                { value: 'silver', label: 'Silver' },
+                                { value: 'gold', label: 'Gold' },
+                                { value: 'rose', label: 'Rose' },
+                                { value: 'violet', label: 'Violet' },
+                                { value: 'red', label: 'Red' },
+                                { value: 'dark green', label: 'Dark Green' },
+                                { value: 'titan', label: 'Titan' },
+                            ]}
+                        />
                     </div>
                     <br />
                     <label className="custom-label">Category:</label>
                     <div className="custom-select-wrapper">
-                        <Select value={category} onChange={(e) => setCategory(e.target.value)} options={[
-                            { value: '', label: 'Select a category' },
-                            { value: 'Phone', label: 'Phone' },
-                            { value: 'Laptop', label: 'Laptop' },
-                            { value: 'Tablet', label: 'Tablet' },
-                            { value: 'Watches', label: 'Watches' }
-                        ]} />
+                        <Select
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
+                            options={[
+                                { value: '', label: 'Select a category' },
+                                { value: 'Phone', label: 'Phone' },
+                                { value: 'Laptop', label: 'Laptop' },
+                                { value: 'Tablet', label: 'Tablet' },
+                                { value: 'Watches', label: 'Watches' },
+                                { value: 'Accessories', label: 'Accessories' },
+                                { value: 'Smart TV', label: 'Smart TV' },
+                                { value: 'For Home', label: 'For Home' },
+                            ]}
+                        />
                     </div>
                     <br />
                     <label className="custom-label">Product Images:</label>
-                    <Input type="file" accept="image/*" multiple
-                           onChange={handleImageChange} />
+                    <Input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={handleImageChange}
+                    />
                     <br />
                     <div className="form-button-div">
                         <Button type="button" size="large" onClick={handleAddProduct}>Add Product</Button>
@@ -139,8 +167,12 @@ const AddProductForm: React.FC = () => {
                 </form>
                 <div className="image-previews">
                     {images.map((image, index) => (
-                        <img key={index} src={image} alt={`Preview ${index + 1}`}
-                             style={{ width: '100px', height: 'auto', margin: '5px' }} />
+                        <img
+                            key={index}
+                            src={image}
+                            alt={`Preview ${index + 1}`}
+                            style={{ width: '100px', height: 'auto', margin: '5px' }}
+                        />
                     ))}
                 </div>
             </div>
@@ -149,3 +181,4 @@ const AddProductForm: React.FC = () => {
 };
 
 export default AddProductForm;
+
